@@ -7,6 +7,12 @@ import { Die } from "../types/Die";
 import { generateDiceId } from "../helpers/generateDiceId";
 
 export type Advantage = "ADVANTAGE" | "DISADVANTAGE" | null;
+export type Dedge = "D EDGE" | "D BANE" | null;
+export type Dbane = "D EDGE" | "D BANE" | null;
+export type Edge =  "EDGE" | null;
+export type Bane =  "BANE" | null;
+export type Skill = "SKILL" | null;
+export type Power = "POWER" | null;
 export type DiceCounts = Record<string, number>;
 
 interface DiceControlsState {
@@ -15,7 +21,16 @@ interface DiceControlsState {
   defaultDiceCounts: DiceCounts;
   diceCounts: DiceCounts;
   diceBonus: number;
+  diceChar: number;
+  diceEdgebonus: number;
+  diceSkillbonus: number;
   diceAdvantage: Advantage;
+  diceDedge: Dedge;
+  diceDbane: Dbane;
+  diceEdge: Edge;
+  diceBane: Bane;
+  diceSkill: Skill;
+  dicePower: Power;
   diceHidden: boolean;
   diceRollPressTime: number | null;
   fairnessTesterOpen: boolean;
@@ -25,7 +40,16 @@ interface DiceControlsState {
   incrementDieCount: (id: string) => void;
   decrementDieCount: (id: string) => void;
   setDiceAdvantage: (advantage: Advantage) => void;
+  setDiceDedge: (dedge: Dedge) => void;
+  setDiceDbane: (dbane: Dbane) => void;
+  setDiceEdge: (edge: Edge) => void;
+  setDiceBane: (bane: Bane) => void;
+  setDiceSkill: (skill: Skill) => void;
+  setDicePower: (power: Power) => void;
   setDiceBonus: (bonus: number) => void;
+  setDiceChar: (char: number) => void;
+  setDiceEdgebonus: (edgebonus: number) => void;
+  setDiceSkillbonus: (skillbonus: number) => void;
   toggleDiceHidden: () => void;
   setDiceRollPressTime: (time: number | null) => void;
   toggleFairnessTester: () => void;
@@ -42,7 +66,16 @@ export const useDiceControlsStore = create<DiceControlsState>()(
     defaultDiceCounts: initialDiceCounts,
     diceCounts: initialDiceCounts,
     diceBonus: 0,
+    diceChar: 0,
+    diceEdgebonus: 0,
+    diceSkillbonus: 0,
     diceAdvantage: null,
+    diceDedge: null,
+    diceDbane: null,
+    diceEdge: null,
+    diceBane: null,
+    diceSkill: null,
+    dicePower: null,
     diceHidden: false,
     diceRollPressTime: null,
     fairnessTesterOpen: false,
@@ -98,9 +131,54 @@ export const useDiceControlsStore = create<DiceControlsState>()(
         state.diceBonus = bonus;
       });
     },
+    setDiceChar(char) {
+      set((state) => {
+        state.diceChar = char;
+      });
+    },
+    setDiceEdgebonus(edgebonus) {
+      set((state) => {
+        state.diceEdgebonus = edgebonus;
+      });
+    },
+    setDiceSkillbonus(skillbonus) {
+      set((state) => {
+        state.diceSkillbonus = skillbonus;
+      });
+    },
     setDiceAdvantage(advantage) {
       set((state) => {
         state.diceAdvantage = advantage;
+      });
+    }, 
+    setDiceDedge(dedge) {
+      set((state) => {
+        state.diceDedge = dedge;
+      });
+    },
+    setDiceDbane(dbane) {
+      set((state) => {
+        state.diceDbane = dbane;
+      });
+    },
+    setDiceEdge(edge) {
+      set((state) => {
+        state.diceEdge = edge;
+      });
+    },
+    setDiceBane(bane) {
+      set((state) => {
+        state.diceBane = bane;
+      });
+    },
+    setDiceSkill(skill) {
+      set((state) => {
+        state.diceSkill = skill;
+      });
+    },
+    setDicePower(power) {
+      set((state) => {
+        state.dicePower = power;
       });
     },
     toggleDiceHidden() {
@@ -141,6 +219,8 @@ function getDiceByIdFromSet(diceSet: DiceSet) {
 export function getDiceToRoll(
   counts: DiceCounts,
   advantage: Advantage,
+  dedge: Dedge,
+  power: Power,
   diceById: Record<string, Die>
 ) {
   const dice: (Die | Dice)[] = [];
@@ -152,6 +232,7 @@ export function getDiceToRoll(
     }
     const { style, type } = die;
     for (let i = 0; i < count; i++) {
+      
       if (advantage === null) {
         if (type === "D100") {
           // Push a d100 and d10 when rolling a d100
@@ -162,7 +243,8 @@ export function getDiceToRoll(
             ],
           });
         } else {
-          dice.push({ id: generateDiceId(), style, type });
+          const dbane = dedge;
+          dice.push({ id: generateDiceId(), style, type, dbane });
         }
       } else {
         // Rolling with advantage or disadvantage
