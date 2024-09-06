@@ -8,7 +8,7 @@
   "description": "Owlbear Dice Mod for Draw Steel",
   "action": {
     "title": "DS Dice",
-    "icon": "/DS-dice-icon.svg",
+    "icon": "/DS-icon.svg",
     "popover": "/",
     "height": 700,
     "width": 375
