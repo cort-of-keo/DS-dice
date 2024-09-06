@@ -1,8 +1,8 @@
-# Owlbear Rodeo Dice
+# Draw Steel Mod for Owlbear Rodeo Dice
 
 Beautiful 3D dice extension for d20 based systems
 
-![Example](/docs/header.jpg)
+![Example](/docs/DS-dice.jpg)
 
 ## Installing
 
@@ -12,6 +12,8 @@ and use this [manifest link](https://ds-dice.onrender.com/manifest.json)
 to install then extension in Owlbear.
 
 ## How it Works
+
+Currently the Characteristic Score, Edge, Bane, and Skilled buttons are functioning. Working on the rest.
 
 This project uses [React](https://reactjs.org/) for UI, [Three.js](https://threejs.org/) for rendering and [Rapier](https://rapier.rs/) for physics.
 
