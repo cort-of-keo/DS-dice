@@ -32,6 +32,7 @@ export function Sidebar() {
         <Divider flexItem sx={{ mx: 1 }} />
         <DiceHidden />
         <DiceExtras />
+        <DiceDS />
         <DiceHistory />
         <FairnessTesterButton />
         <PluginGate>
