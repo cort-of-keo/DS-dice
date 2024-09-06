@@ -19,20 +19,24 @@ import { getDiceToRoll, useDiceControlsStore } from "./store";
 
 export function DiceHistory() {
   const startRoll = useDiceRollStore((state) => state.startRoll);
-
+  const power = useDiceControlsStore((state) => state.dicePower);
+  const setPower = useDiceControlsStore((state) => state.setDicePower);
   const hidden = useDiceControlsStore((state) => state.diceHidden);
   const setBonus = useDiceControlsStore((state) => state.setDiceBonus);
   const setAdvantage = useDiceControlsStore((state) => state.setDiceAdvantage);
+  const setDedge = useDiceControlsStore((state) => state.setDiceDedge);
   const resetDiceCounts = useDiceControlsStore(
     (state) => state.resetDiceCounts
   );
 
   function handleRoll(roll: RecentRoll) {
-    const dice = getDiceToRoll(roll.counts, roll.advantage, roll.diceById);
+    const dice = getDiceToRoll(roll.counts, roll.advantage, roll.dedge, power, roll.diceById);
     startRoll({ dice, bonus: roll.bonus, hidden });
     resetDiceCounts();
     setBonus(0);
     setAdvantage(null);
+    setDedge(null);
+    setPower(null);
     handleClose();
   }
 
