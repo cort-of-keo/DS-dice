@@ -1,13 +1,13 @@
 ---
-title: Dice
-description: Beautiful 3D dice extension for d20 based systems
-author: Owlbear Rodeo
+title: DS Dice
+description: Mod for Draw Steel
+author: Cort_of_KEO
 image: https://raw.githubusercontent.com/owlbear-rodeo/dice/main/docs/header.jpg
 icon: https://dice.owlbear.rodeo/logo.png
 tags:
   - built-by-owlbear
   - dice
-manifest: https://dice.owlbear.rodeo/manifest.json
+manifest: https://ds-dice.onrender.com/manifest.json
 learn-more: https://owlbear.app
 ---
 

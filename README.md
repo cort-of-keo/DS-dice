@@ -6,7 +6,10 @@ Beautiful 3D dice extension for d20 based systems
 
 ## Installing
 
-The extension can be installed from the [store page](https://extensions.owlbear.rodeo/dice).
+Follow this
+[guide](https://docs.owlbear.rodeo/extensions/tutorial-hello-world/install-your-extension)
+and use this [manifest link](https://ds-dice.onrender.com/manifest.json)
+to install then extension in Owlbear.
 
 ## How it Works
 
@@ -22,7 +25,7 @@ In order to sync rolls over the network efficiently we rely on the fact the Rapi
 
 So we only need to make sure that all the initial parameters are synced and then each client can run its own simulation and end up with the correct animation.
 
-To try out the dice roller outside of Owlbear Rodeo you can head to <https://dice.owlbear.rodeo/>.
+To try out the dice roller outside of Owlbear Rodeo you can head to <https://ds-dice.onrender.com>.
 
 ## Building
 
