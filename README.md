@@ -1,6 +1,6 @@
 # Draw Steel Mod for Owlbear Rodeo Dice
 
-Beautiful 3D dice extension for d20 based systems
+Added a new menu for Draw Steel bonuses and dice mechanics.
 
 ![Example](/docs/DS-dice.jpg)
 
