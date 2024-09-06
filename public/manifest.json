@@ -1,6 +1,6 @@
 {
   "name": "DS Dice",
-  "version": "1.0.1",
+  "version": "0.1.1",
   "manifest_version": 1,
   "author": "Cort_of_KEO",
   "homepage_url": "https://github.com/cort-of-keo/DS-dice",
@@ -8,7 +8,7 @@
   "description": "Owlbear Dice Mod for Draw Steel",
   "action": {
     "title": "DS Dice",
-    "icon": "/icon.svg",
+    "icon": "/DS-dice-icon.svg",
     "popover": "/",
     "height": 700,
     "width": 375
