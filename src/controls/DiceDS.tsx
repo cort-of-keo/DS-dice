@@ -91,21 +91,7 @@ export function DiceDS() {
         }}
       >
         <Stack>
-          <DiePower
-            power={power}
-            onChange={(power) => {
-              setPower(power);
-              //if (power === null){
-              //  handleDiceCountDecrease("d10");
-              //}
-              //else if (power === "POWER"){
-              //  handleDiceCountIncrease("d10");
-              //}
-              
-              clearRollIfNeeded();
-            }}
-          />
-          <Divider variant="middle" />
+          
           <DieDS
             bonus={bonus}
             char={char}

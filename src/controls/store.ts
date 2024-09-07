@@ -248,7 +248,7 @@ for (const [id, count] of countEntries) {
         } else {
           // Properly set dbane from dedge
           const dbane = dedge; // Use dedge value directly for dbane
-          console.log(`DBane: ${dbane}, Dedge: ${dedge}`); // Debugging output
+          //console.log(`DBane: ${dbane}, Dedge: ${dedge}`); // Debugging output
 
           // Add the die object with the correct dbane property
           dice.push({
@@ -295,7 +295,7 @@ for (const [id, count] of countEntries) {
   }
 
   // Debugging output to verify the final dice array structure
-  console.log('Final dice array from getDiceToRoll:', JSON.stringify(dice, null, 2));
+  //console.log('Final dice array from getDiceToRoll:', JSON.stringify(dice, null, 2));
 
   return dice;
 }
