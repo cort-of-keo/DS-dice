@@ -106,26 +106,26 @@ export function getCombinedDiceValue(
 
   // Handle D EDGE and D BANE conditions explicitly without being skipped
   if (finalDbane === "D EDGE") {
-    console.log("Handling D EDGE condition");
+    //console.log("Handling D EDGE condition");
     if (total < 12) {
       console.log("Returning 12 for D EDGE");
       return 12;
     }
     if (total < 17) {
-      console.log("Returning 17 for D EDGE");
+     // console.log("Returning 17 for D EDGE");
       return 17;
     }
     return total;
   }
 
   if (finalDbane === "D BANE") {
-    console.log("Handling D BANE condition");
+    //console.log("Handling D BANE condition");
     if (total > 17) {
-      console.log("Returning 16 for D BANE");
+    //  console.log("Returning 16 for D BANE");
       return 16;
     }
     if (total > 12) {
-      console.log("Returning 11 for D BANE");
+    //  console.log("Returning 11 for D BANE");
       return 11;
     }
     return total;
