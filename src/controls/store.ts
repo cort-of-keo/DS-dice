@@ -222,20 +222,23 @@ export function getDiceToRoll(
   dedge: Dedge,
   power: Power,
   diceById: Record<string, Die>
-) {
+): (Die | Dice)[] {
   const dice: (Die | Dice)[] = [];
   const countEntries = Object.entries(counts);
-  for (const [id, count] of countEntries) {
+  
+
+for (const [id, count] of countEntries) {
+
     const die = diceById[id];
     if (!die) {
       continue;
     }
     const { style, type } = die;
+
     for (let i = 0; i < count; i++) {
-      
       if (advantage === null) {
         if (type === "D100") {
-          // Push a d100 and d10 when rolling a d100
+          // Push a D100 and D10 when rolling a D100
           dice.push({
             dice: [
               { id: generateDiceId(), style, type: "D100" },
@@ -243,14 +246,22 @@ export function getDiceToRoll(
             ],
           });
         } else {
-          const dbane = dedge;
-          dice.push({ id: generateDiceId(), style, type, dbane });
+          // Properly set dbane from dedge
+          const dbane = dedge; // Use dedge value directly for dbane
+          console.log(`DBane: ${dbane}, Dedge: ${dedge}`); // Debugging output
+
+          // Add the die object with the correct dbane property
+          dice.push({
+            dice: [{ id: generateDiceId(), style, type }],
+            dbane, // Ensure dbane is passed here
+          });
         }
       } else {
         // Rolling with advantage or disadvantage
         const combination = advantage === "ADVANTAGE" ? "HIGHEST" : "LOWEST";
+
         if (type === "D100") {
-          // Push 2 d100s and d10s
+          // Push two sets of D100 and D10 dice for advantage/disadvantage
           dice.push({
             dice: [
               {
@@ -269,6 +280,7 @@ export function getDiceToRoll(
             combination,
           });
         } else {
+          // Push two of the same die type for advantage/disadvantage
           dice.push({
             dice: [
               { id: generateDiceId(), style, type },
@@ -276,9 +288,14 @@ export function getDiceToRoll(
             ],
             combination,
           });
+          console.log(`Combination: ${combination}`); // Debugging output
         }
       }
     }
   }
+
+  // Debugging output to verify the final dice array structure
+  console.log('Final dice array from getDiceToRoll:', JSON.stringify(dice, null, 2));
+
   return dice;
 }
