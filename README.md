@@ -11,7 +11,7 @@ NOTE: Power Roll button removed until it is functional.
 Follow this
 [guide](https://docs.owlbear.rodeo/extensions/tutorial-hello-world/install-your-extension)
 and use this [manifest link](https://ds-dice.onrender.com/manifest.json)
-to install then extension in Owlbear.
+to install the extension in Owlbear.
 
 ## How it Works
 
