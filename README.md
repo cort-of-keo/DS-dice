@@ -4,7 +4,7 @@ Added a new menu for Draw Steel bonuses and dice mechanics.
 
 ![Example](/docs/DS-dice.jpg)
 
-NOTE: Power Roll button removed until it is functional.
+
 
 ## Installing
 
@@ -19,7 +19,7 @@ to install the extension in Owlbear.
 - Click on the 'DS' button on the sidebar.
 - Adjust your Characteristic Score and select the appropriate modifiers.
 
-I removed the Power Roll button until I can get it fuctioning as intended.
+I was not able to impliment a power roll button while maintaining the original functionality of Owlbear Rodeo Dice. I am going to have another go at it with removing funcationality of the original extention as required.
 
 There is no logic to make sure you don't apply a Edge/Bane when you have a Double Edge/Bane.
 
