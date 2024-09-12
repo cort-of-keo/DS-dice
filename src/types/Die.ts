@@ -7,6 +7,7 @@ export interface Die {
   id: string;
   style: DiceStyle;
   type: DiceType;
+  
 }
 
 export function isDie(value: any): value is Die {

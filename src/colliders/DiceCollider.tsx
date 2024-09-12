@@ -1,8 +1,10 @@
 import { DiceType } from "../types/DiceType";
 import { D10Collider } from "./D10Collider";
+import { D210Collider } from "./D210Collider";
 import { D12Collider } from "./D12Collider";
 import { D20Collider } from "./D20Collider";
 import { D4Collider } from "./D4Collider";
+import { D3Collider } from "./D3Collider";
 import { D6Collider } from "./D6Collider";
 import { D8Collider } from "./D8Collider";
 
@@ -10,12 +12,16 @@ export function DiceCollider({ diceType }: { diceType: DiceType }) {
   switch (diceType) {
     case "D4":
       return <D4Collider />;
+    case "D3":
+      return <D3Collider />;
     case "D6":
       return <D6Collider />;
     case "D8":
       return <D8Collider />;
     case "D10":
       return <D10Collider />;
+    case "D210":
+      return <D210Collider />;
     case "D12":
       return <D12Collider />;
     case "D20":

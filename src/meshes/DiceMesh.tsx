@@ -2,6 +2,7 @@ import React from "react";
 import { DiceType } from "../types/DiceType";
 import { RoundedDiceMesh } from "./rounded/RoundedDiceMesh";
 import { SharpDiceMesh } from "./sharp/SharpDiceMesh";
+import * as THREE from "three";
 
 type DiceMeshProps = JSX.IntrinsicElements["group"] & {
   diceType: DiceType;

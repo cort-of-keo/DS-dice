@@ -3,29 +3,25 @@ import { styled } from "@mui/material/styles";
 import { DiceStyle } from "../types/DiceStyle";
 import { DiceType } from "../types/DiceType";
 
-import * as galaxyPreviews from "./galaxy";
-import * as gemstonePreviews from "./gemstone";
-import * as glassPreviews from "./glass";
-import * as ironPreviews from "./iron";
-import * as nebulaPreviews from "./nebula";
-import * as sunrisePreviews from "./sunrise";
-import * as sunsetPreviews from "./sunset";
-import * as walnutPreviews from "./walnut";
+import * as dsd3Previews from "./dsd3";
+import * as dsd6Previews from "./dsd6";
+import * as dsd10Previews from "./dsd10";
+import * as ds2d10Previews from "./ds2d10";
+import { prepare } from "@react-three/fiber/dist/declarations/src/core/renderer";
 
 const previews: Record<DiceStyle, Record<DiceType, string>> = {
-  GALAXY: galaxyPreviews,
-  GEMSTONE: gemstonePreviews,
-  GLASS: glassPreviews,
-  IRON: ironPreviews,
-  NEBULA: nebulaPreviews,
-  SUNRISE: sunrisePreviews,
-  SUNSET: sunsetPreviews,
-  WALNUT: walnutPreviews,
+  DSD3: dsd3Previews,
+  DSD6: dsd6Previews,
+  DSD10: dsd10Previews,
+  DS2D10: ds2d10Previews,
 };
+ 
 
 interface PreviewImageProps {
   size?: "small" | "medium" | "large";
 }
+
+
 
 const PreviewImage = styled("img", {
   shouldForwardProp: (prop) => prop !== "size",
@@ -33,6 +29,7 @@ const PreviewImage = styled("img", {
   width: size === "small" ? "28px" : size === "medium" ? "34px" : "38px",
   height: size === "small" ? "28px" : size === "medium" ? "34px" : "38px",
 }));
+
 
 type DiePreviewProps = {
   diceType: DiceType;

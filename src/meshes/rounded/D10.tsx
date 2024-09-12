@@ -27,7 +27,7 @@ export const D10 = React.forwardRef<
         <mesh name="d10" castShadow receiveShadow geometry={nodes.d10.geometry}>
           {children}
           <group
-            name="010_locator_0"
+            name="010_locator_10"
             position={[0.4, 0.42, -0.56]}
             rotation={[2.21, 0.4, -2.65]}
           />

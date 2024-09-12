@@ -21,6 +21,8 @@ export function DicePicker() {
     }
   }
 
+  console.log(diceById, counts);
+
   return (
     <>
       {Object.entries(counts).map(([id, count]) => {
