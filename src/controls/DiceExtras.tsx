@@ -8,12 +8,14 @@ import Tooltip from "@mui/material/Tooltip";
 
 import { DieChar } from "./DieChar";
 import { DieBonus } from "./DieBonus";
-import { DieDedge } from "./DieDedge";
+
 import { DieBane } from "./DieBane";
 import { DieEdge } from "./DieEdge";
 import { DieSkill } from "./DieSkill";
 import { useDiceControlsStore } from "./store";
 import { useDiceRollStore } from "../dice/store";
+
+import { DieDedge } from "./DieDedge";
 
 export function DiceExtras() {
   const bonus = useDiceControlsStore((state) => state.diceBonus);
@@ -100,6 +102,9 @@ export function DiceExtras() {
           />
           <Divider variant="middle" />
           <DieDedge
+
+
+
             dedge={dedge}
             onChange={(dedge) => {
               setDedge(dedge);
