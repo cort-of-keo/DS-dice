@@ -10,7 +10,6 @@ import Button from "@mui/material/Button";
 import ButtonBase from "@mui/material/ButtonBase";
 import Typography from "@mui/material/Typography";
 
-
 import CloseIcon from "@mui/icons-material/CloseRounded";
 import HiddenIcon from "@mui/icons-material/VisibilityOffRounded";
 import RollIcon from "@mui/icons-material/ArrowForwardRounded";
@@ -40,24 +39,26 @@ export function DiceRollControls() {
 
   const counts = useDiceControlsStore((state) => state.diceCounts);
   const bonus = useDiceControlsStore((state) => state.diceBonus);
-  const char = useDiceControlsStore((state) => state.diceChar);
-  const dedge = useDiceControlsStore((state) => state.diceDedge);
+  const advantage = useDiceControlsStore((state) => state.diceAdvantage);
   const edge = useDiceControlsStore((state) => state.diceEdge);
   const bane = useDiceControlsStore((state) => state.diceBane);
   const skill = useDiceControlsStore((state) => state.diceSkill);
-  // Is currently the default dice state (all counts 0 and dedge/edge/char/skilled defaults)
+  const dedge = useDiceControlsStore((state) => state.diceDedge);
+  const power = useDiceControlsStore((state) => state.dicePower);
+  // Is currently the default dice state (all counts 0 and advantage/bonus defaults)
   const isDefault = useMemo(
     () =>
       Object.entries(defaultDiceCounts).every(
         ([type, count]) => counts[type as DiceType] === count
       ) &&
-      dedge === null &&
+      advantage === null &&
       edge === null &&
-      bane === null &&
       skill === null &&
-      bonus === 0 &&
-      char === 0,
-    [counts, defaultDiceCounts, dedge, edge, bane, skill, bonus, char]
+      dedge === null &&
+      bane === null &&
+      power === null &&
+      bonus === 0,
+    [counts, defaultDiceCounts, advantage, bonus, edge, skill, dedge, bane, power]
   );
 
   const rollValues = useDiceRollStore((state) => state.rollValues);
@@ -104,14 +105,20 @@ function DicePickedControls() {
   const setBonus = useDiceControlsStore((state) => state.setDiceBonus);
   const char = useDiceControlsStore((state) => state.diceChar);
   const setChar = useDiceControlsStore((state) => state.setDiceChar);
+  const advantage = useDiceControlsStore((state) => state.diceAdvantage);
+  const setAdvantage = useDiceControlsStore((state) => state.setDiceAdvantage); 
   const dedge = useDiceControlsStore((state) => state.diceDedge);
   const setDedge = useDiceControlsStore((state) => state.setDiceDedge);
+  const dbane = useDiceControlsStore((state) => state.diceDbane);
+  const setDbane = useDiceControlsStore((state) => state.setDiceDbane);
   const edge = useDiceControlsStore((state) => state.diceEdge);
   const setEdge = useDiceControlsStore((state) => state.setDiceEdge);
   const bane = useDiceControlsStore((state) => state.diceBane);
   const setBane = useDiceControlsStore((state) => state.setDiceBane);
   const skill = useDiceControlsStore((state) => state.diceSkill);
   const setSkill = useDiceControlsStore((state) => state.setDiceSkill);
+  const power = useDiceControlsStore((state) => state.dicePower);
+  const setPower = useDiceControlsStore((state) => state.setDicePower);
 
   const resetDiceCounts = useDiceControlsStore(
     (state) => state.resetDiceCounts
@@ -121,10 +128,10 @@ function DicePickedControls() {
 
   function handleRoll() {
     if (hasDice && rollPressTime) {
-      const dice = getDiceToRoll(counts, dedge, diceById);
+      const dice = getDiceToRoll(counts, advantage, dedge, power, diceById);
       const activeTimeSeconds = (performance.now() - rollPressTime) / 1000;
       const speedMultiplier = Math.max(1, Math.min(10, activeTimeSeconds * 2));
-      startRoll({ dice, bonus, dedge, hidden }, speedMultiplier);
+      startRoll({ dice, bonus, hidden }, speedMultiplier);
 
       const rolledDiceById: Record<string, Die> = {};
       for (const id of Object.keys(counts)) {
@@ -132,7 +139,7 @@ function DicePickedControls() {
           rolledDiceById[id] = diceById[id];
         }
       }
-      pushRecentRoll({ dedge, counts, bonus, diceById: rolledDiceById });
+      pushRecentRoll({ advantage, dedge, counts, bonus, diceById: rolledDiceById });
 
       handleReset();
     }
@@ -143,10 +150,13 @@ function DicePickedControls() {
     resetDiceCounts();
     setBonus(0);
     setChar(0);
+    setAdvantage(null);
     setDedge(null);
     setEdge(null);
     setBane(null);
     setSkill(null);
+    setPower(null);
+
   }
 
   const rollPressTime = useDiceControlsStore(
@@ -292,14 +302,104 @@ function DicePickedControls() {
           left: 24,
         }}
       >
-        {dedge && (
+        {advantage && (
           <Typography
             textAlign="left"
             lineHeight="40px"
             color="white"
             variant="h6"
           >
-            {dedge === "D EDGE" ? "D Edge" : "D Bane"}
+            {advantage === "ADVANTAGE" ? "Adv" : "Dis"}
+          </Typography>
+        )}
+      </Stack>
+      <Stack
+        sx={{
+          position: "absolute",
+          top: 12,
+          left: 24,
+        }}
+      >
+        {dedge !== null && (
+          <Typography
+            textAlign="left"
+            lineHeight="40px"
+            color="white"
+            variant="h6"
+          >
+            {dbane}
+          </Typography>
+        )}
+      </Stack>
+      <Stack
+        sx={{
+          position: "absolute",
+          top: 12,
+          left: 24,
+        }}
+      >
+        {edge !== null && (
+          <Typography
+            textAlign="left"
+            lineHeight="40px"
+            color="white"
+            variant="h6"
+          >
+            {edge}
+          </Typography>
+        )}
+      </Stack>
+      <Stack
+        sx={{
+          position: "absolute",
+          top: 12,
+          left: 24,
+        }}
+      >
+        {bane !== null && (
+          <Typography
+            textAlign="left"
+            lineHeight="40px"
+            color="white"
+            variant="h6"
+          >
+            {bane}
+          </Typography>
+        )}
+      </Stack>
+      <Stack
+        sx={{
+          position: "absolute",
+          top: 36,
+          left: 24,
+        }}
+      >
+        {skill !== null && (
+          <Typography
+            textAlign="left"
+            lineHeight="40px"
+            color="white"
+            variant="h6"
+          >
+            {skill}
+          </Typography>
+        )}
+      </Stack>
+      <Stack
+        sx={{
+          position: "absolute",
+          top: 36,
+          left: 24,
+        }}
+      >
+        {power !== null && (
+          <Typography
+            textAlign="left"
+            lineHeight="40px"
+            color="white"
+            variant="h6"
+          >
+            {power}
           </Typography>
         )}
       </Stack>

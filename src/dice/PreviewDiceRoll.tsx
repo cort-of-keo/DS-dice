@@ -18,15 +18,17 @@ import { WeightClass } from "../types/WeightClass";
 
 export function PreviewDiceRoll() {
   const counts = useDiceControlsStore((state) => state.diceCounts);
+  const advantage = useDiceControlsStore((state) => state.diceAdvantage);
   const dedge = useDiceControlsStore((state) => state.diceDedge);
+  const power = useDiceControlsStore((state) => state.dicePower);
   const diceById = useDiceControlsStore((state) => state.diceById);
   const defaultDiceCounts = useDiceControlsStore(
     (state) => state.defaultDiceCounts
   );
 
   const diceRoll = useMemo<DiceRoll>(() => {
-    return { dice: getDiceToRoll(counts, dedge, diceById) };
-  }, [counts, dedge, diceById]);
+    return { dice: getDiceToRoll(counts, advantage, dedge, power, diceById) };
+  }, [counts, advantage, dedge, power, diceById]);
 
   const dice = useMemo(() => getDieFromDice(diceRoll), [diceRoll]);
 
@@ -54,8 +56,12 @@ export function PreviewDiceRoll() {
   const listener = useAudioListener();
 
   const diceWeight = useMemo<WeightClass>(() => {
-    return "MEDIUM";
-}, [dice]);
+    if (dice.length > 0 && dice[0].style === "IRON") {
+      return "HEAVY";
+    } else {
+      return "MEDIUM";
+    }
+  }, [dice]);
 
   // Play a roll sound when the dice button is in focus
   useEffect(() => {

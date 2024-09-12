@@ -5,6 +5,7 @@ import Divider from "@mui/material/Divider";
 import { DiceSetPicker } from "./DiceSetPicker";
 import { DicePicker } from "./DicePicker";
 import { DiceExtras } from "./DiceExtras";
+import { DiceDS } from "./DiceDS"; // new for DS
 import { DiceHidden } from "./DiceHidden";
 import { DiceHistory } from "./DiceHistory";
 
@@ -26,12 +27,13 @@ export function Sidebar() {
       }}
     >
       <Stack p={1} gap={1} alignItems="center">
-      
+        <DiceSetPicker />
         <Divider flexItem sx={{ mx: 1 }} />
         <DicePicker />
         <Divider flexItem sx={{ mx: 1 }} />
         <DiceHidden />
         <DiceExtras />
+        <DiceDS />
         <DiceHistory />
         <FairnessTesterButton />
         <PluginGate>

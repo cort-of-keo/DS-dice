@@ -1,12 +1,13 @@
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-type DieDedgeProps = {
+type DieDEdgeProps = {
   dedge?: "D EDGE" | "D BANE" | null;
+  dbane?: "D EDGE" | "D BANE" | null;
   onChange: (dedge: "D EDGE" | "D BANE" | null) => void;
 };
 
-export function DieDedge({ dedge, onChange }: DieDedgeProps) {
+export function DieDEdge({ dedge, dbane, onChange }: DieDEdgeProps) {
   return (
     <ToggleButtonGroup
       color="primary"
@@ -27,10 +28,10 @@ export function DieDedge({ dedge, onChange }: DieDedgeProps) {
         value="D BANE"
         sx={{ borderWidth: 0, borderRightWidth: 1 }}
       >
-        D Bane
+        Double Bane
       </ToggleButton>
       <ToggleButton value="D EDGE" sx={{ border: 0 }}>
-        D Edge
+        Double Edge
       </ToggleButton>
     </ToggleButtonGroup>
   );

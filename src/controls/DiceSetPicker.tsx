@@ -25,7 +25,7 @@ export function DiceSetPicker() {
   function handleClose() {
     setAnchorEl(null);
   }
-/** Dice Style Picker (not used)
+
   return (
     <>
       <IconButton
@@ -84,5 +84,5 @@ export function DiceSetPicker() {
         </Stack>
       </Menu>
     </>
-  ); **/
+  );
 }

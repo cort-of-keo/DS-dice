@@ -1,6 +1,5 @@
 import React from "react";
 import { Die } from "../types/Die";
-import * as THREE from "three";
 
 import { DiceMesh } from "../meshes/DiceMesh";
 import { DiceMaterial } from "../materials/DiceMaterial";
@@ -13,6 +12,7 @@ export const Dice = React.forwardRef<THREE.Group, DiceProps>(
       <DiceMesh
         diceType={die.type}
         {...props}
+        sharp={die.style === "WALNUT"}
         ref={ref}
       >
         <DiceMaterial diceStyle={die.style} />
